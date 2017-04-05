@@ -6,26 +6,13 @@
     android:orientation="vertical"
     android:background="@mipmap/bg_common_2">
 
-    <Button
-        android:id="@+id/ctrl_wave_btn0"
-        android:layout_height="wrap_content"
+    <SeekBar
+        android:id="@+id/ctrl_wave_bar"
         android:layout_width="match_parent"
-        android:text="ctrl_btn0"/>
-    <Button
-        android:id="@+id/ctrl_wave_btn1"
         android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="ctrl_btn1"/>
-    <Button
-        android:id="@+id/ctrl_wave_btn2"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="ctrl_btn2"/>
-    <Button
-        android:id="@+id/ctrl_wave_btn3"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:text="ctrl_btn3"/>
+        android:layout_marginTop="20dp"
+        android:max="100"
+        android:progress="30"/>
 
     <louis.surfacewaveview.ui.SurfaceWaveView
         android:id="@+id/surface_wave_view"

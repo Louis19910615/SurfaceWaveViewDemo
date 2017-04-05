@@ -3,18 +3,15 @@ package louis.surfacewaveviewdemo;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.widget.SeekBar;
 
 import louis.surfacewaveview.ui.SurfaceWaveView;
 import louis.surfacewaveview.ui.managers.WaveTransitionManager;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button mCtrlWaveBtn0;
-    private Button mCtrlWaveBtn1;
-    private Button mCtrlWaveBtn2;
-    private Button mCtrlWaveBtn3;
+    private SeekBar mCtrlWaveBar;
+    private int mProgress = 30;
     private SurfaceWaveView mSurfaceWaveView;
     private WaveTransitionManager mWaveTransitionManager;
 
@@ -24,41 +21,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mSurfaceWaveView = (SurfaceWaveView) findViewById(R.id.surface_wave_view);
-
-        mCtrlWaveBtn0 = (Button) findViewById(R.id.ctrl_wave_btn0);
-        mCtrlWaveBtn0.setOnClickListener(new View.OnClickListener() {
+        mCtrlWaveBar = (SeekBar) findViewById(R.id.ctrl_wave_bar);
+        mCtrlWaveBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onClick(View view) {
-                mWaveTransitionManager.powerOff();
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (fromUser) {
+                    mProgress = progress;
+                }
             }
-        });
 
-        mCtrlWaveBtn1 = (Button) findViewById(R.id.ctrl_wave_btn1);
-        mCtrlWaveBtn1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                mWaveTransitionManager.changeLevel(30);
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
             }
-        });
 
-        mCtrlWaveBtn2 = (Button) findViewById(R.id.ctrl_wave_btn2);
-        mCtrlWaveBtn2.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                mWaveTransitionManager.changeLevel(60);
-            }
-        });
-
-        mCtrlWaveBtn3 = (Button) findViewById(R.id.ctrl_wave_btn3);
-        mCtrlWaveBtn3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mWaveTransitionManager.changeLevel(100);
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                mWaveTransitionManager.changeLevel(mProgress);
             }
         });
 
         mWaveTransitionManager = new WaveTransitionManager(mSurfaceWaveView);
         mWaveTransitionManager.startThread();
+        mWaveTransitionManager.changeLevel(mProgress);
     }
 
     @Override
