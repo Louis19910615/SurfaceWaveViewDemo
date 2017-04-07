@@ -16,4 +16,6 @@ dependencies {
     compile project(':surfacewaveviewlib-debug')
 }
 ```
-
+## 优点
+1. 采用SurfaceView降低CPU消耗
+2. 调整水波纹速度、大小时，具有平滑过渡效果
