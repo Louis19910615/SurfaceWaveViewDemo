@@ -17,5 +17,5 @@ dependencies {
 }
 ```
 ## 优点
-1. 采用SurfaceView降低CPU消耗
+1. 采用SurfaceView不阻塞主线程
 2. 调整水波纹速度、大小时，具有平滑过渡效果
